@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <title>thepgfinder</title>
+<!--
+
+Template 2095 Level
+
+http://www.tooplate.com/view/2095-level
+
+-->
+    <!-- load stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">  <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">                <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">                                      <!-- Bootstrap style -->
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
+    <link rel="stylesheet" href="css/tooplate-style.css">                                   <!-- Templatemo style -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+          <![endif]-->
+</head>
+
+    <body>
+        <div class="tm-main-content" id="top">
+            <div class="tm-top-bar-bg"></div>
+            <div class="tm-top-bar" id="tm-top-bar">
+                <!-- Top Navbar -->
+                <div class="container">
+                    <div class="row">
+                        
+                        <nav class="navbar navbar-expand-lg narbar-light">
+                            <a class="navbar-brand mr-auto" href="#">
+                                <img src="images/logo.png" alt="Site logo">
+                                ThePGFinder
+                            </a>
+                            <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
+                                <ul class="navbar-nav ml-auto">
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="/rooms.html">View Available Rooms</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="#tm-section-5">About Us</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="#tm-section-6">Contact Us</a>
+                                  </li>
+                                </ul>
+                            </div>                            
+                        </nav>            
+                    </div>
+                </div>
+            </div>
+            <div class="tm-section tm-bg-img" id="tm-section-1">
+              <div class="tm-bg-white ie-container-width-fix-2">
+                  <div class="container ie-h-align-center-fix">
+                      <div class="container mt-4">
+                          <div class="filter-form mb-4">
+                            <form id="filterForm" class="form-inline">
+                              <div class="form-group mr-3">
+                                <label for="rent" class="mr-2">Max Rent:</label>
+                                <input type="number" id="rent" name="rent" class="form-control">
+                              </div>
+                              <div class="form-group mr-3">
+                                <label for="gender" class="mr-2">Gender:</label>
+                                <select id="gender" name="gender" class="form-control">
+                                  <option value="">Any</option>
+                                  <option value="Boys">Boys</option>
+                                  <option value="Girls">Girls</option>
+                                  <option value="Both">Both</option>
+                                </select>
+                              </div>
+                              <div class="form-group mr-3">
+                                <label for="location" class="mr-2">Location:</label>
+                                <select id="location" name="location" class="form-control">
+                                  <option value="">Any</option>
+                                  <option value="Star City">Star City</option>
+                                  <!-- Add more locations as needed -->
+                                </select>
+                              </div>
+                              <button type="button" id="checkAvailability" class="btn btn-primary">Check Availability</button>
+                              <script>
+                                  document.getElementById('filterForm').addEventListener('submit', function(event) {
+                                    event.preventDefault();
+                                    const rent = document.getElementById('rent').value;
+                                    const gender = document.getElementById('gender').value;
+                                    const location = document.getElementById('location').value;
+                                    const queryParams = new URLSearchParams({ rent, gender, location }).toString();
+                                    window.location.href = `rooms.html?${queryParams}`;
+                                  });
+                                </script>
+                                <!-- No Results Message -->
+                                <div id="noResults" class="container mt-4" style="display: none;">
+                                  <div class="alert alert-warning" role="alert">
+                                    No rooms found matching the selected criteria.
+                                  </div>
+                                </div>
+                                
+                              <div class="form-row clearfix pl-2 pr-2 tm-fx-col-xs">
+                                        
+                                  <a href="#" class="ie-10-ml-auto ml-auto mt-1 tm-font-semibold tm-color-primary" id="helpLink">Need Help?</a>
+                                  <div class="help-box" id="helpBox">
+                                    <p>Here you can add any information you need to provide to the user.</p>
+                                    <script>
+                                        document.getElementById('helpLink').addEventListener('click', function(event) {
+                                            event.preventDefault(); // Prevent default anchor click behavior
+                                            var helpLink = event.target;
+                                            var helpBox = document.getElementById('helpBox');
+                                    
+                                            // Calculate position
+                                            var rect = helpLink.getBoundingClientRect();
+                                            var offsetTop = rect.top + window.scrollY + helpLink.offsetHeight;
+                                            var offsetLeft = rect.left + window.scrollX;
+                                    
+                                            // Set position of help box
+                                            helpBox.style.top = offsetTop + 'px';
+                                            helpBox.style.left = offsetLeft + 'px';
+                                    
+                                            // Toggle visibility
+                                            helpBox.style.display = helpBox.style.display === 'block' ? 'none' : 'block';
+                                        });
+                                    
+                                        document.addEventListener('click', function(event) {
+                                            var helpBox = document.getElementById('helpBox');
+                                            var helpLink = document.getElementById('helpLink');
+                                    
+                                            if (!helpBox.contains(event.target) && !helpLink.contains(event.target)) {
+                                                helpBox.style.display = 'none'; // Hide the help box
+                                            }
+                                        });
+                                    </script>
+
+                                    
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                                                      
+                  </div>
+              </div>                                  
+          </div>
+
+            <div class="tm-section-2">
+              <div class="container">
+                  <div class="row">
+                      <div class="col text-center">
+                          <h2 class="tm-section-title">Available Rooms</h2>                                           
+                      </div>                
+                  </div>
+              </div>        
+          </div>
+            
+            
+            <div class="tm-section tm-section-pad tm-bg-gray" id="tm-section-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="container mt-5">
+    
+                            <div id="roomsContainer" class="row">
+                            <!-- Room Card 1 -->
+                            <div class="col-md-4 room-card" data-rent="7000" data-gender="Both" data-location="Star City">
+                                <div class="card mb-4">
+                                <div id="carouselRoom1" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="\images\Star City\Ravi pg for boys\1.jpg" class="d-block w-100" alt="Room 1 Image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="\images\Star City\Ravi pg for boys\2.jpg" class="d-block w-100" alt="Room 1 Image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="\images\Star City\Ravi pg for boys\3.jpg" class="d-block w-100" alt="Room 1 Image 3">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="\images\Star City\Ravi pg for boys\4.jpg" class="d-block w-100" alt="Room 1 Image 4">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="\images\Star City\Ravi pg for boys\5.jpg" class="d-block w-100" alt="Room 1 Image 5">
+                                    </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselRoom1" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselRoom1" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">2 Seater for Boys and Girls</h5>
+                                    <p class="card-text"><strong>Rent: Rs.7000</strong><br>Star City</p>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#room1Modal">
+                                    More Details
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+
+                            <!-- Room Card 2 -->
+                            <div class="col-md-4" data-rent="7000" data-gender="Boys" data-location="Star City">
+                                <div class="card mb-4">
+                                <div id="carouselRoom2" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="\images\Star City\singh accomodation\1.jpg" class="d-block w-100" alt="Room 2 Image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="\images\Star City\singh accomodation\2.jpg" class="d-block w-100" alt="Room 2 Image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="\images\Star City\singh accomodation\3.jpg" class="d-block w-100" alt="Room 2 Image 3">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="\images\Star City\singh accomodation\4.jpg" class="d-block w-100" alt="Room 2 Image 3">
+                                    </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselRoom2" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselRoom2" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">2 Seater for Boys</h5>
+                                    <p class="card-text"><strong>Rent: Rs.7000</strong><br>Star City</p>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#room2Modal">
+                                    More Details
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+
+                            <!-- Room Card 3 -->
+                            <div class="col-md-4" data-rent="9500" data-gender="Both" data-location="Star City">
+                                <div class="card mb-4">
+                                    <div id="carouselRoom3" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                        <img src="\images\Star City\homeland luxury pg for boys and girls\1.jpg" class="d-block w-100" alt="Room 3 Image 1">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img src="\images\Star City\homeland luxury pg for boys and girls\2.jpg" class="d-block w-100" alt="Room 3 Image 2">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img src="\images\Star City\homeland luxury pg for boys and girls\3.jpg" class="d-block w-100" alt="Room 3 Image 3">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img src="\images\Star City\homeland luxury pg for boys and girls\4.jpg" class="d-block w-100" alt="Room 3 Image 3">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img src="\images\Star City\homeland luxury pg for boys and girls\5.jpg" class="d-block w-100" alt="Room 3 Image 3">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img src="\images\Star City\homeland luxury pg for boys and girls\6.jpg" class="d-block w-100" alt="Room 3 Image 3">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img src="\images\Star City\homeland luxury pg for boys and girls\7.jpg" class="d-block w-100" alt="Room 3 Image 3">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img src="\images\Star City\homeland luxury pg for boys and girls\8.jpg" class="d-block w-100" alt="Room 3 Image 3">
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselRoom3" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselRoom3" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                    </div>
+                                    <div class="card-body">
+                                    <h5 class="card-title">2 Seater for Boys and Girls</h5>
+                                    <p class="card-text"><strong>Rent: Rs.9500</strong><br>Star City</p>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#room3Modal">
+                                        More Details
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Room Card 4 -->
+                            <div class="col-md-4" data-rent="7000" data-gender="Boys" data-location="Star City">
+                              <div class="card mb-4">
+                                <div id="carouselRoom4" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\Ranjit pg for boys\1.jpg" class="d-block w-100" alt="Room 4 Image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\Ranjit pg for boys\2.jpg" class="d-block w-100" alt="Room 4 Image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\Ranjit pg for boys\3.jpg" class="d-block w-100" alt="Room 4 Image 3">
+                                    </div>
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom4" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom4" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <div class="card-body">
+                                  <h5 class="card-title">Ranjit PG for Boys</h5>
+                                  <p class="card-text"><strong>Rent: </strong><br>Star City</p>
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#room4Modal">
+                                    More Details
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Room Card 5 -->
+                            <div class="col-md-4" data-rent="10000" data-gender="Both" data-location="Star City">
+                              <div class="card mb-4">
+                                <div id="carouselRoom5" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\Daliwal Homes\1.jpg" class="d-block w-100" alt="Room 5 Image 1">
+                                    </div>
+                                    
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom5" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom5" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <div class="card-body">
+                                  <h5 class="card-title">2 Seater for Boys and Girls</h5>
+                                  <p class="card-text"><strong>Rent: 10000 </strong><br>Star City</p>
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#room5Modal">
+                                    More Details
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Room Card 6 -->
+                            <div class="col-md-4" data-rent="11500" data-gender="Both" data-location="Star City">
+                              <div class="card mb-4">
+                                <div id="carouselRoom6" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\radhe gopal\1.jpg" class="d-block w-100" alt="Room 6 Image 1">
+                                    </div>
+                                    
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom6" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom6" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <div class="card-body">
+                                  <h5 class="card-title">2 Seater for Boys and Girls</h5>
+                                  <p class="card-text"><strong>Rent: 11500 </strong><br>Star City</p>
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#room6Modal">
+                                    More Details
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Room Card 7 -->
+                            <div class="col-md-4" data-rent="12000" data-gender="Boys" data-location="Star City">
+                              <div class="card mb-4">
+                                <div id="carouselRoom7" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\deol pg 2nd\1.jpg" class="d-block w-100" alt="Room 7 Image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\deol pg 2nd\2.jpg" class="d-block w-100" alt="Room 7 Image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\deol pg 2nd\3.jpg" class="d-block w-100" alt="Room 7 Image 3">
+                                    </div>
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom7" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom7" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <div class="card-body">
+                                  <h5 class="card-title">2 Seater for Boys</h5>
+                                  <p class="card-text"><strong>Rent: 12000 </strong><br>Star City</p>
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#room7Modal">
+                                    More Details
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                            
+                        
+
+                        <!-- Modal for Room 1 -->
+                        <div class="modal fade" id="room1Modal" tabindex="-1" role="dialog" aria-labelledby="room1ModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg modal-custom-height" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="room1ModalLabel">2 Seater for Boys and Girls</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div id="carouselRoom1Modal" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\Ravi pg for boys\1.jpg" class="d-block w-100" alt="Room 1 Image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\Ravi pg for boys\2.jpg" class="d-block w-100" alt="Room 1 Image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\Ravi pg for boys\3.jpg" class="d-block w-100" alt="Room 1 Image 3">
+                                    </div>
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom1Modal" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom1Modal" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <li><strong>Ravi Pg</strong></li>
+                                <ul>
+                                <li><strong>Rent : 7000</strong></li>  
+                                <li><strong>Facilities:</strong></li>
+                                <ul>
+                                  <li>Wifi: Available for internet connectivity.</li>
+                                  <li>Water Cooler: Accessible for refreshing cold water.</li>
+                                </ul>
+                                <li><strong>Accommodation:</strong></li>
+                                <ul>
+                                  <li>Double Seater Rooms: Each room accommodates two individuals.</li>
+                                  <li>Attached Washroom: Ensures privacy and convenience.</li>
+                                  <li>Flat-like Setup: Rooms are structured like flats, with a common area in each compartment.</li>
+                                  <li>Separate Area for Girls: Ensures gender-specific accommodation.</li>
+                                  <li>Open Area: Provides an open space in front of the premises for relaxation or other activities.</li>
+                                  <li>
+                          <strong>Location:</strong>
+                          <a href="https://maps.app.goo.gl/gnUGtxYRzYVagED87" target="_blank">https://maps.app.goo.gl/gnUGtxYRzYVagED87</a>
+                        </li>
+                                </ul>
+                                <li><strong>Amenities:</strong></li>
+                                <ul>
+                                  <li>Geyser: Available for hot water supply, especially during cold weather.</li>
+                                  <li>Common Fridge: Shared refrigerator space for storing food items.</li>
+                                  <li>Electricity Bill: Separate billing for electricity consumption.</li>
+                                  <li>Fan: Provided for air circulation within the rooms.</li>
+                                  <li>AC: Air conditioning units installed for cooling.</li>
+                                  <li>Cooler: Not provided.</li>
+                                </ul>
+                                <li><strong>Additional Information:</strong></li>
+                                <ul>
+                                  <li>Meal Cost: Extra charge of approximately 3000/* for meals.</li>
+                                  <li>Contact: Details for inquiries or further information.</li>
+                                  <li><strong>Note*</strong>: Prices mentioned are part of a monthly subscription model. Security deposit may be required. Prices and features are subject to change without prior notice. No guarantee is provided regarding fixed pricing or features.</li>
+                                </ul>
+                              </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Modal for Room 2 -->
+                        <div class="modal fade" id="room2Modal" tabindex="-1" role="dialog" aria-labelledby="room2ModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg modal-custom-height" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="room2ModalLabel">2 Seater for Boys</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div id="carouselRoom2Modal" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\singh accomodation\1.jpg" class="d-block w-100" alt="Room 2 Image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\singh accomodation\2.jpg" class="d-block w-100" alt="Room 2 Image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\singh accomodation\3.jpg" class="d-block w-100" alt="Room 2 Image 3">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\singh accomodation\4.jpg" class="d-block w-100" alt="Room 2 Image 4">
+                                    </div>
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom2Modal" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom2Modal" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <li><strong>Singh Accomodations</strong></li>
+                      <ul>
+                        <li><strong>Rent : 7000</strong></li>
+                        <li><strong>Facilities:</strong></li>
+                        <ul>
+                          <li>Wifi: Available for internet connectivity.</li>
+                          <li>Water Cooler: Accessible for refreshing cold water.</li>
+                        </ul>
+                        <li><strong>Accommodation:</strong></li>
+                        <ul>
+                          <li>Double Seater Rooms: Each room accommodates two individuals.</li>
+                          <li>Attached Washroom: Ensures privacy and convenience.</li>
+                          <li><strong>Location:</strong> <a href="https://maps.app.goo.gl/KuZRD4WnY3vdbMFn8" target="_blank">https://maps.app.goo.gl/KuZRD4WnY3vdbMFn8</a></li>
+                          <li>Walking distance From CU.</li>
+                        </ul>
+                        <li><strong>Amenities:</strong></li>
+                        <ul>
+                          <li>Washing Machine: Available for use.</li>
+                          <li>Geyser: Available for hot water supply, especially during cold weather.</li>
+                          <li>Electricity Bill: Separate billing for electricity consumption.</li>
+                          <li>Fan: Provided for air circulation within the rooms.</li>
+                          <li>AC: Not provided.</li>
+                          <li>Cooler: Not provided.</li>
+                        </ul>
+                        <li><strong>Additional Information:</strong></li>
+                        <ul>
+                          <li>Meal Cost: Extra charge of approximately 3500/* for meals.</li>
+                          <li>Contact: 8699601200 for inquiries or further information.</li>
+                          <li><strong>Note*:</strong> All the prices are part of a monthly subscription model. One might have to pay a security deposit despite all this. The price is totally dependent on the property owner and is subject to change. We do not guarantee any definite pricing or features.</li>
+                        </ul>
+                      </ul>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Modal for Room 3 -->
+                        <div class="modal fade" id="room3Modal" tabindex="-1" role="dialog" aria-labelledby="room3ModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg modal-custom-height" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="room3ModalLabel">2 Seater for Boys and Girls</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div id="carouselRoom3Modal" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\homeland luxury pg for boys and girls\1.jpg" class="d-block w-100" alt="Room 3 Image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\homeland luxury pg for boys and girls\2.jpg" class="d-block w-100" alt="Room 3 Image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\homeland luxury pg for boys and girls\3.jpg" class="d-block w-100" alt="Room 3 Image 3">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\homeland luxury pg for boys and girls\4.jpg" class="d-block w-100" alt="Room 3 Image 4">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\homeland luxury pg for boys and girls\5.jpg" class="d-block w-100" alt="Room 3 Image 5">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\homeland luxury pg for boys and girls\6.jpg" class="d-block w-100" alt="Room 3 Image 6">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\homeland luxury pg for boys and girls\7.jpg" class="d-block w-100" alt="Room 3 Image 7">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\homeland luxury pg for boys and girls\8.jpg" class="d-block w-100" alt="Room 3 Image 7">
+                                    </div>
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom3Modal" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom3Modal" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <li><strong>Homeland Luxury Pg for Boys and Girls</strong></li>
+                      <ul>
+                        <li><strong>Rent : 9500</strong></li>
+                        <li><strong>Facilities:</strong></li>
+                        <ul>
+                          <li>Wifi: Available for internet connectivity.</li>
+                          <li>Water Cooler: Accessible for refreshing cold water.</li>
+                        </ul>
+                        <li><strong>Accommodation:</strong></li>
+                        <ul>
+                          <li>Double Seater Rooms: Each room accommodates two individuals.</li>
+                          <li>Attached Washroom: Ensures privacy and convenience.</li>
+                          <li>Separate Area for Girls: Ensures gender-specific accommodation.</li>
+                          <li><strong>Location:</strong> <a href="https://maps.app.goo.gl/o254K5esucDtSMNX6" target="_blank">https://maps.app.goo.gl/o254K5esucDtSMNX6</a></li>
+                          <li>Walking Distance from CU.</li>
+                        </ul>
+                        <li><strong>Amenities:</strong></li>
+                        <ul>
+                          <li>Washing Machine: Available for use.</li>
+                          <li>Geyser: Available for hot water supply, especially during cold weather.</li>
+                          <li>Electricity Bill: Separate billing for electricity consumption.</li>
+                          <li>Fan: Provided for air circulation within the rooms.</li>
+                          <li>AC: Air conditioning units installed for cooling.</li>
+                          <li>Cooler: Provided for additional cooling.</li>
+                        </ul>
+                        <li><strong>Additional Information:</strong></li>
+                        <ul>
+                          <li>Food Price: Included in the rent.</li>
+                          <li>Contact: 8059679997 for inquiries or further information.</li>
+                          <li><strong>Note*:</strong> All the prices are part of a monthly subscription model. One might have to pay a security deposit despite all this. The price is totally dependent on the property owner and is subject to change. We do not guarantee any definite pricing or features.</li>
+                        </ul>
+                      </ul>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Modal for Room 4 -->
+                        <div class="modal fade" id="room4Modal" tabindex="-1" role="dialog" aria-labelledby="room4ModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg modal-custom-height" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="room4ModalLabel">Room 4 Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div id="carouselRoom4Modal" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\Ranjit pg for boys\1.jpg" class="d-block w-100" alt="Room 4 Image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\Ranjit pg for boys\2.jpg" class="d-block w-100" alt="Room 4 Image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\Ranjit pg for boys\3.jpg" class="d-block w-100" alt="Room 4 Image 3">
+                                    </div>
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom4Modal" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom4Modal" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <p>Details about Room 4 including amenities, pricing, and other information.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Modal for Room 5 -->
+                        <div class="modal fade" id="room5Modal" tabindex="-1" role="dialog" aria-labelledby="room5ModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg modal-custom-height" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="room5ModalLabel">2 Seater for Boys and Girls</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div id="carouselRoom5Modal" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\Daliwal Homes\1.jpg" class="d-block w-100" alt="Room 5 Image 1">
+                                    </div>
+                                    
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom5Modal" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom5Modal" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <li><strong>Daliwal Homes</strong></li>
+                      <ul>
+                        <li><strong>Rent : 10000</strong></li>
+                        <li><strong>Facilities:</strong></li>
+                        <ul>
+                          <li>Wifi: Available for internet connectivity.</li>
+                          <li>Water Cooler: Accessible for refreshing cold water.</li>
+                        </ul>
+                        <li><strong>Accommodation:</strong></li>
+                        <ul>
+                          <li>Double Seater Rooms: Each room accommodates two individuals.</li>
+                          <li>Attached Washroom: Ensures privacy and convenience.</li>
+                          <li>Separate Area for Girls: Ensures gender-specific accommodation.</li>
+                          <li><strong>Location:</strong> <a href="https://maps.app.goo.gl/hyGF3egvyUjf3dbt7" target="_blank">https://maps.app.goo.gl/hyGF3egvyUjf3dbt7</a></li>
+                          <li>Walking Distance from CU.</li>
+                        </ul>
+                        <li><strong>Amenities:</strong></li>
+                        <ul>
+                          <li>Washing Machine: Available for use.</li>
+                          <li>Geyser: Available for hot water supply, especially during cold weather.</li>
+                          <li>Electricity Bill: Separate billing for electricity consumption.</li>
+                          <li>Fan: Provided for air circulation within the rooms.</li>
+                          <li>AC: Air conditioning units installed for cooling.</li>
+                          <li>Cooler: Provided for additional cooling.</li>
+                        </ul>
+                        <li><strong>Additional Information:</strong></li>
+                        <ul>
+                          <li>Food Price: Included in the rent.</li>
+                          <li>Contact: 987488238, 788669330, 8699509013 for inquiries or further information.</li>
+                          <li><strong>Note*:</strong> All the prices are part of a monthly subscription model. One might have to pay a security deposit despite all this. The price is totally dependent on the property owner and is subject to change. We do not guarantee any definite pricing or features.</li>
+                        </ul>
+                      </ul>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Modal for Room 6 -->
+                        <div class="modal fade" id="room6Modal" tabindex="-1" role="dialog" aria-labelledby="room6ModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg modal-custom-height" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="room6ModalLabel">2 Seater for Boys and Girls</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div id="carouselRoom6Modal" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\radhe gopal\1.jpg" class="d-block w-100" alt="Room 6 Image 1">
+                                    </div>
+                                    
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom6Modal" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom6Modal" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <li><strong>Radhe Gopal Pg for Boys and Girls</strong></li>
+                      <ul>
+                        <li><strong>Rent : 11500</strong></li>
+                        <li><strong>Facilities:</strong></li>
+                        <ul>
+                          <li>Wifi: Available for internet connectivity.</li>
+                          <li>Water Cooler: Accessible for refreshing cold water.</li>
+                        </ul>
+                        <li><strong>Accommodation:</strong></li>
+                        <ul>
+                          <li>Double Seater Rooms: Each room accommodates two individuals with an attached washroom.</li>
+                          <li>Rooms are like flats with a common area in each compartment.</li>
+                          <li>Separate Area for Girls: Ensures gender-specific accommodation.</li>
+                          <li>Open area in front for recreational activities.</li>
+                          <li><strong>Location:</strong> <a href="https://maps.app.goo.gl/4aTwUg4TVTwQ8qDe8" target="_blank">https://maps.app.goo.gl/4aTwUg4TVTwQ8qDe8</a></li>
+                        </ul>
+                        <li><strong>Amenities:</strong></li>
+                        <ul>
+                          <li>Geyser: Available for hot water supply, especially during cold weather.</li>
+                          <li>Common Fridge: Accessible for storing food and drinks.</li>
+                          <li>Electricity Bill: Separate billing for electricity consumption.</li>
+                          <li>Fan: Provided for air circulation within the rooms.</li>
+                          <li>AC: Air conditioning units installed for cooling.</li>
+                          <li>Cooler: Not available.</li>
+                        </ul>
+                        <li><strong>Contact Information:</strong></li>
+                        <ul>
+                          <li>Contact: 9023506010, 9417622204 for inquiries or further information.</li>
+                        </ul>
+                        <li><strong>Additional Information:</strong></li>
+                        <ul>
+                          <li><strong>Note*:</strong> All the prices are part of a monthly subscription model. One might have to pay a security deposit despite all this. The price is totally dependent on the property owner and is subject to change. We do not guarantee any definite pricing or features.</li>
+                        </ul>
+                      </ul>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Modal for Room 7 -->
+                        <div class="modal fade" id="room7Modal" tabindex="-1" role="dialog" aria-labelledby="room7ModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg modal-custom-height" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="room7ModalLabel">2 Seater for Boys</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div id="carouselRoom7Modal" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img src="\images\Star City\deol pg 2nd\1.jpg" class="d-block w-100" alt="Room 7 Image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\deol pg 2nd\2.jpg" class="d-block w-100" alt="Room 7 Image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img src="\images\Star City\deol pg 2nd\3.jpg" class="d-block w-100" alt="Room 7 Image 3">
+                                    </div>
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselRoom7Modal" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselRoom7Modal" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <li><strong>Deol's PG for Boys</strong></li>
+                                <li><strong>Accommodation Details</strong></li>
+                                <ul>
+                                  <li><strong>Rent:12000</strong></li>
+                                  <li><strong>Facilities:</strong></li>
+                                  <ul>
+                                    <li>Wifi: Available for internet connectivity.</li>
+                                    <li>Water Cooler: Accessible for refreshing cold water.</li>
+                                  </ul>
+                                  <li><strong>Accommodation:</strong></li>
+                                  <ul>
+                                    <li>Double Seater Rooms: Each room accommodates two individuals with an attached washroom.</li>
+                                    <li>Rooms are like flats with a common area in each compartment.</li>
+                                    <li>Open area in front for recreational activities.</li>
+                                    <li><strong>Location:</strong> <a href="https://maps.app.goo.gl/UgN6LHCTc45oNYd28" target="_blank">https://maps.app.goo.gl/UgN6LHCTc45oNYd28</a></li>
+                                  </ul>
+                                  <li><strong>Amenities:</strong></li>
+                                  <ul>
+                                    <li>Geyser: Available for hot water supply, especially during cold weather.</li>
+                                    <li>Common Fridge: Accessible for storing food and drinks.</li>
+                                    <li>Electricity Bill: Separate billing for electricity consumption.</li>
+                                    <li>Fan: Provided for air circulation within the rooms.</li>
+                                    <li>AC: Air conditioning units installed for cooling.</li>
+                                    <li>Cooler: Not available.</li>
+                                  </ul>
+                                  <li><strong>Contact Information:</strong></li>
+                                  <ul>
+                                    <li>Contact: 9815214477, 9988899003 for inquiries or further information.</li>
+                                  </ul>
+                                  <li><strong>Additional Information:</strong></li>
+                                  <ul>
+                                    <li><strong>Note*:</strong> All the prices are part of a monthly subscription model. One might have to pay a security deposit despite all this. The price is totally dependent on the property owner and is subject to change. We do not guarantee any definite pricing or features.</li>
+                                  </ul>
+                                </ul>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                                              
+                      </div>
+
+
+            <div class="tm-bg-video">
+                <div class="overlay">
+                    <i class="fa fa-5x fa-play-circle tm-btn-play"></i>
+                    <i class="fa fa-5x fa-pause-circle tm-btn-pause"></i>
+                </div>
+                <video controls loop class="tmVideo">
+                    <source src="videos/video.mp4" type="video/mp4">
+                    <source src="videos/video.ogg" type="video/ogg">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="tm-section tm-section-pad tm-bg-img" id="tm-section-5">                                                        
+                    <div class="container ie-h-align-center-fix">
+                        <div class="row tm-flex-align-center">
+                            <div class="col-xs-12 col-md-12 col-lg-3 col-xl-3 tm-media-title-container">
+                                <h2 class="text-uppercase tm-section-title-2">ASIA</h2>
+                                <h3 class="tm-color-primary tm-font-semibold tm-section-subtitle-2">Singapore</h3>
+                            </div>
+                            <div class="col-xs-12 col-md-12 col-lg-9 col-xl-9 mt-0 mt-sm-3">
+                                <div class="ml-auto tm-bg-white-shadow tm-pad tm-media-container">
+                                    <article class="media tm-margin-b-20 tm-media-1">
+                                        <img src="img/img-03.jpg" alt="Image">
+                                        <div class="media-body tm-media-body-1 tm-media-body-v-center">
+                                            <h3 class="tm-font-semibold tm-color-primary tm-article-title-3">Suspendisse vel est libero sem phasellus ac laoreet</h3>
+                                            <p>Integer libero purus, consectetur vitae posuere quis, maximus id diam. Vivamus eget tellus ornare, sollicitudin quam id, dictum nulla. Phasellus finibus rhoncus justo, tempus eleifend neque dictum ac. Aenean metus leo, consectetur non. 
+                                            <br><br>
+											Etiam aliquam arcu at mauris consectetur scelerisque. Integer elementum justo in orci facilisis ultricies. Pellentesque at velit ante. Duis scelerisque metus vel felis porttitor gravida.</p>
+                                        </div>                                
+                                    </article>
+                                    <article class="media tm-margin-b-20 tm-media-1">
+                                        <img src="img/img-04.jpg" alt="Image">
+                                        <div class="media-body tm-media-body-1 tm-media-body-v-center">
+                                            <h3 class="tm-font-semibold tm-article-title-3">Suspendisse vel est libero sem phasellus ac laoreet</h3>
+                                            <p>Duis accumsan sagittis tortor in ultrices. Praesent tortor ante, fringilla ac nibh porttitor, fermentum commodo nulla.</p>
+                                            <a href="#" class="text-uppercase tm-color-primary tm-font-semibold">Continue reading...</a>
+                                        </div>                                
+                                    </article>
+                                    <article class="media tm-margin-b-20 tm-media-1">
+                                        <img src="img/img-05.jpg" alt="Image">
+                                        <div class="media-body tm-media-body-1 tm-media-body-v-center">
+                                            <h3 class="tm-font-semibold tm-article-title-3">Faucibus dolor ligula nisl metus auctor aliquet</h3>
+                                            <p>Nunc in felis aliquet metus luctus iaculis vel et nisi. Nulla venenatis nisl orci, laoreet ultricies massa tristique id.</p>
+                                            <a href="#" class="text-uppercase tm-color-primary tm-font-semibold">Continue reading...</a>
+                                        </div>                                
+                                    </article>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+            
+            <div class="tm-section tm-section-pad tm-bg-img tm-position-relative" id="tm-section-6">
+              <div class="container d-flex flex-column align-items-center ie-h-align-center-fix">                  
+                  <div class="row w-100 justify-content-center">
+                      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-5 mt-3 mt-md-0">
+                          <div class="tm-bg-white tm-p-4">
+                            <h2 class="text-center mb-4">Contact Us</h2>
+                              <form action="index.html" method="post" class="contact-form">
+                                  <div class="form-group">
+                                      <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Name" required />
+                                  </div>
+                                  <div class="form-group">
+                                      <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Email" required />
+                                  </div>
+                                  <div class="form-group">
+                                      <input type="text" id="contact_subject" name="contact_subject" class="form-control" placeholder="Subject" required />
+                                  </div>
+                                  <div class="form-group">
+                                      <textarea id="contact_message" name="contact_message" class="form-control" rows="9" placeholder="Message" required></textarea>
+                                  </div>
+                                  <button type="submit" class="btn btn-primary tm-btn-primary">Send Message Now</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+          <footer class="tm-bg-dark-blue">
+              <div class="container">
+                  <div class="row">
+                      <p class="col-sm-12 text-center tm-font-light tm-color-white p-4 mb-0">
+                          Email: <a href="mailto:pgfinderr@gmail.com" class="text-black">pgfinderr@gmail.com</a>
+                            , Address : Chandigarh University, NH-05, Gharuan, Chandigarh State, Punjab, India
+                      </p>                
+                  </div>
+              </div>                
+          </footer>
+        </div>
+        
+        <!-- load JS files -->
+        <script src="js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+        <script src="js/popper.min.js"></script>                    <!-- https://popper.js.org/ -->       
+        <script src="js/bootstrap.min.js"></script>                 <!-- https://getbootstrap.com/ -->
+        <script src="js/datepicker.min.js"></script>                <!-- https://github.com/qodesmith/datepicker -->
+        <script src="js/jquery.singlePageNav.min.js"></script>      <!-- Single Page Nav (https://github.com/ChrisWojcik/single-page-nav) -->
+        <script src="slick/slick.min.js"></script>                  <!-- http://kenwheeler.github.io/slick/ -->
+
+        <!--filter logic-->
+        <script>
+          // Function to get query parameters
+          function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+              rent: params.get('rent'),
+              gender: params.get('gender'),
+              location: params.get('location')
+            };
+          }
+        
+          // Function to filter rooms
+          function filterRooms() {
+            const { rent, gender, location } = getQueryParams();
+            const roomCards = document.querySelectorAll('.room-card');
+            let noResults = true;
+        
+            roomCards.forEach(card => {
+              const cardRent = parseInt(card.getAttribute('data-rent'), 10);
+              const cardGender = card.getAttribute('data-gender');
+              const cardLocation = card.getAttribute('data-location');
+        
+              const rentMatch = rent ? cardRent <= parseInt(rent, 10) : true;
+              const genderMatch = gender ? cardGender === gender : true;
+              const locationMatch = location ? cardLocation === location : true;
+        
+              if (rentMatch && genderMatch && locationMatch) {
+                card.style.display = 'block';
+                noResults = false;
+              } else {
+                card.style.display = 'none';
+              }
+            });
+        
+            if (noResults) {
+              document.getElementById('noResults').style.display = 'block';
+            } else {
+              document.getElementById('noResults').style.display = 'none';
+            }
+          }
+        
+          // Filter rooms on page load
+          window.onload = filterRooms;
+        </script>
+                     
+
+</body>
+</html>
+

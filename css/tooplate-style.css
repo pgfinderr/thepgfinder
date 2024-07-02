@@ -13,6 +13,69 @@ body {
 	overflow-x: hidden;
 }
 
+
+/* room card */
+
+.card {
+	transition: transform 0.2s;
+  }
+  
+  .card:hover {
+	transform: scale(1.05);
+  }
+  
+  .card-img-top {
+	height: 300px;
+	object-fit: cover;
+  }
+  
+  .carousel-item img {
+	height: 300px;
+	object-fit: cover;
+  }
+  
+  .modal-body img {
+	width: 100%;
+  }
+  
+  .modal-lg {
+	max-width: 75%;
+  }
+  .modal-custom-height .modal-content{
+	height: 80vh; /* Adjust as needed */
+	overflow-y: auto;
+	display:flex;
+	flex-direction:column;
+  }
+  
+  .modal-custom-height .modal-body{
+	flex:1;
+	overflow-y:auto;
+  }
+  
+  .modal-custom-height .modal-body img{
+	max-width:100%;
+	height:auto;
+  }
+  
+  
+.help-box {
+	display: none; /* Hidden by default */
+	position: absolute;
+	top: 50px;
+	right: 20px;
+	width: 200px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	background-color: white;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+}
+
+.help-box h3 {
+	margin-top: 0;
+}
+
 a, button { transition: all 0.3s ease; }
 a:hover,
 a:focus {
@@ -31,7 +94,9 @@ a:focus {
 .tm-bg-primary { background: #ee5057; }
 .tm-bg-gray { background: #F4F4F4; }
 .tm-bg-white { background: white; }
-.tm-bg-dark-blue { background: #1f3646; }
+.tm-bg-dark-blue { 
+	background: #1f3646;
+	width:100%; }
 
 .tm-bg-white-shadow {
 	-webkit-box-shadow: 0px 0px 7px 0px rgba(214,214,214,1);
@@ -128,14 +193,14 @@ p {
 }
 
 #tm-section-1 {	
-	background-image: url('../img/bg-img-1.jpg');	
+	background-image: url('../images/bg-img-1.jpg');	
 	height: 515px;
 }
 
 #tm-section-5 { background-image: url('../img/bg-img-2.jpg'); }
 
 #tm-section-6 {
-	background-image: url('../img/bg-img-3.jpg');
+	background-image: url('/images/bg-img-3.jpg');
 	background-position: top center;
 	padding-top: 120px;
 	padding-bottom: 60px;
